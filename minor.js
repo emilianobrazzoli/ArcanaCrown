@@ -1,13 +1,11 @@
-    var dialog = require('./dialog.js');
 
-    var decks = [];
     var suits = ['cuori', 'quadri', 'fiori', 'picche'];
     var ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 
 module.exports = {
-     reveal : function(deckNumber, cardsNumber) {
+     reveal : function(playerDeck, cardsNumber) {
         //todo control parameter: if there are number and if they are <=8, <=52
-        var toDraw = decks[deckNumber];
+        var toDraw = playerDeck;
         var message = '';
         if (toDraw.card.length > 0 && cardsNumber > 0) {
             if (toDraw.card.length - cardsNumber < 0) {
@@ -18,24 +16,24 @@ module.exports = {
                     card = toDraw.card[(toDraw.card.length - i - 1)];
                     message = message + '   ' + card.rank + ' ' + card.suit;
                 } else if (toDraw.card.length === 0) {
-                    dialog.send(userID, channelID, 'You have no more card to reveal');
+                    message = 'You have no more card to reveal';
                     break;
                 } else {
-                    dialog.send(userID, channelID, 'ERROR 01');
+                    message = 'ERROR 01';
                     break;
                 }
             }
             if (message === '') {
                 message = 'No found card';
             }
-            dialog.send(userID, channelID, message);
         } else {
-            dialog.send(userID, channelID, 'You have no more card to reveal');
+            message = 'You have no more card to reveal';
         }
+        return message;
     },
-     drawCard : function(deckNumber, cardsNumber) {
+     drawCard : function(playerDeck, cardsNumber) {
         //todo control parameter: if there are number and if they are <=8, <=52
-        var toDraw = decks[deckNumber];
+        var toDraw = playerDeck;
         var message = '';
         if (toDraw.card.length > 0 && cardsNumber > 0) {
             for (var i = 0; i < cardsNumber; i++) {
@@ -44,25 +42,25 @@ module.exports = {
                     toDraw.graveyard.push(card);
                     message = message + '   ' + card.rank + ' ' + card.suit;
                 } else if (toDraw.card.length === 0) {
-                    dialog.send(userID, channelID, 'You drawed all the card, shaffle and draw');
+                    message = 'You drawed all the card, shaffle and draw';
                     break;
                 } else {
-                    dialog.send(userID, channelID, 'ERROR 02');
+                    message = 'ERROR 02';
                     break;
                 }
             }
             if (message === '') {
                 message = 'No found card';
             }
-            dialog.send(userID, channelID, message);
         } else {
-            dialog.send(userID, channelID, 'You drawed all the card, shaffle and draw ' + (cardsNumber) + ' cards');
+            message = 'You drawed all the card, shaffle and draw ' + (cardsNumber) + ' cards';
         }
+        return message;
 
     },
-     graveyard : function(deckNumber) {
+     graveyard : function(playerDeck) {
         //todo control parameter: if there are number and if they are <=8
-        var toDraw = decks[deckNumber];
+        var toDraw = playerDeck;
 
         var message = '';
         if (toDraw.graveyard.length > 0) {
@@ -73,13 +71,12 @@ module.exports = {
             if (message === '') {
                 message = 'No found card';
             }
-            dialog.send(userID, channelID, message);
         } else {
-            dialog.send(userID, channelID, 'You have no card in the graveyard');
+            message = 'You have no card in the graveyard';
         }
-
+        return message;
     },
-     shaffle : function(deckNumber) {
+     shaffle : function(playerDeck) {
         //todo control parameter: if there are number and if they are <=8
 
         var ordered = [];
@@ -99,16 +96,9 @@ module.exports = {
             for (var x = 0; x < 52; x++) {
                 var randIndex = Math.floor(Math.random() * ordered.length);
                 var cards = ordered.splice(randIndex, 1);
-                decks[deckNumber].card.push(cards[0]);
+                playerDeck.card.push(cards[0]);
             }
         }
 
-    },
-     init : function(playerName) {
-        //todo controll the player name
-        var deckPosition = deckPosition(playerName);
-        // if is the first time it will shaffle two time
-        //todo better code
-        shaffle(deckPosition);
     }
 };

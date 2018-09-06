@@ -1,5 +1,7 @@
-        var dialog = require('./dialog.js');
 
+
+    var minor = require('./minor.js');
+    
         var decks = [];
 
         // take the position of the player deck
@@ -12,28 +14,43 @@
             }
             //if there isn't a deck it will create one
             if (deckPosition === decks.length) {
-                decks.push({
+                var toAdd ={
                     card: [],
                     hand: [],
                     graveyard: [],
                     player: playerName
-                })
-                shaffle(deckPosition);
+                };
+                minor.shaffle(toAdd);
+                decks.push(toAdd);
             }
 
             return deckPosition;
         }
 
+        var deck = function (playerName){
+            return decks[deckPosition(playerName)];
+        }
         // reset all the deck
         var reset = function() {
             decks = [];
         }
 
+      var init = function(playerName) {
+        //todo controll the player name
+        var deckPosition = deckPosition(playerName);
+        // if is the first time it will shaffle two time
+        //todo better code
+        shaffle(deckPosition);
+    }
 
     module.exports = {
         command : function(userID, channelID, message) {
+            var respond ={ who: userID,
+                what:'Cannot find an appropriate answer',
+                where:channelID
+            }
             if (decks.length >= 80) {
-                dialog.send(userID, channelID, 'To many deck on memory! At the end of the game reset all!');
+                respond.what = 'To many deck on memory! At the end of the game reset all!';
             }
             var boxValue = message;
             // Our bot needs to know if it will execute a command
@@ -50,34 +67,31 @@
                             break;
                         case 'draw':
                             if (args.length === 3) {
-                                dialog.send(userID, channelID, 'draw:');
-                                drawCard(deckPosition(userID), args[2]);
+                                respond.what = 'draw: '+ minor.drawCard(deck(userID), args[2]);
                             } else {
-                                dialog.send(userID, channelID, 'Command wrong: declare draw how many cards es /d draw 52');
+                                respond.what = 'Command wrong: declare draw how many cards es /d draw 52';
                             }
                             break;
                         case 'shaffle':
                             if (args.length === 2) {
                                 init(userID);
-                                dialog.send(userID, channelID, 'shaffled:');
+                                respond.what = 'shaffled';
                             } else {
-                                dialog.send(userID, channelID, 'Command wrong: declare a shaffle es /d shaffle');
+                                respond.what = 'Command wrong: declare a shaffle es /d shaffle';
                             }
                             break;
                         case 'reveal':
                             if (args.length === 3) {
-                                dialog.send(userID, channelID, 'reveal:');
-                                reveal(deckPosition(userID), args[2]);
+                                respond.what = 'reveal: '+minor.reveal(deck(userID), args[2]);
                             } else {
-                                dialog.send(userID, channelID, 'Command wrong: declare reveal how many cards es /d reveal 52');
+                                respond.what = 'Command wrong: declare reveal how many cards es /d reveal 52';
                             }
                             break;
                         case 'graveyard':
                             if (args.length === 3) {
-                                dialog.send(userID, channelID, 'graveyard:');
-                                graveyard(deckPosition(userID));
+                                respond.what = 'graveyard: '+ minor.graveyard(deck(userID));
                             } else {
-                                dialog.send(userID, channelID, 'Command wrong: declare graveyard and how many cards es /d graveyard 1');
+                                respond.what = 'Command wrong: declare graveyard and how many cards es /d graveyard 1';
                             }
                             break;
                         case 'top':
@@ -89,14 +103,15 @@
                         case 'reset':
                             if (args.length === 2) {
                                 reset();
-                                dialog.send(userID, channelID, 'reset all deck!');
+                                respond.what = 'reset all deck!';
                             } else {
-                                dialog.send(userID, channelID, 'Command wrong: declare reset /d reset');
+                                respond.what = 'Command wrong: declare reset /d reset';
                             }
                             break;
                             // Just add any case commands if you want to..
                     }
                 }
             }
+            return respond;
         }
     };
