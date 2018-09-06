@@ -16,7 +16,7 @@ module.exports = {
                     card = toDraw.card[(toDraw.card.length - i - 1)];
                     message = message + '   ' + card.rank + ' ' + card.suit;
                 } else if (toDraw.card.length === 0) {
-                    message = 'You have no more card to reveal';
+                    message = message+'\nYou have no more card to reveal';
                     break;
                 } else {
                     message = 'ERROR 01';
@@ -42,7 +42,7 @@ module.exports = {
                     toDraw.graveyard.push(card);
                     message = message + '   ' + card.rank + ' ' + card.suit;
                 } else if (toDraw.card.length === 0) {
-                    message = message+'You drawed all the card, shaffle and'+ (cardsNumber)+' draw';
+                    message = message+'\nYou drawed all the card, shaffle and draw '+ (cardsNumber-i)+' card';
                     break;
                 } else {
                     message = 'ERROR 02';
