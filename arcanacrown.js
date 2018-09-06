@@ -2,14 +2,8 @@
 	var logger = require('winston');
 	var auth = require('./auth.json');
 	var gestional = require('./gestional.js');
+        
 
-
-
-	//Configure logger settings
-	logger.remove(logger.transports.Console);
-	logger.add(logger.transports.Console, {
-	    colorize: true
-	});
 
 	logger.level = 'debug';
 
@@ -28,3 +22,4 @@
 	bot.on('message', function(user, userID, channelID, message, evt) {
 	    gestional.command(userID, channelID, message);
 	});
+	

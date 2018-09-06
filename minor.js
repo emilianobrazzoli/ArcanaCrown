@@ -4,7 +4,8 @@
     var suits = ['cuori', 'quadri', 'fiori', 'picche'];
     var ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 
-    var reveal = function(deckNumber, cardsNumber) {
+module.exports = {
+     reveal : function(deckNumber, cardsNumber) {
         //todo control parameter: if there are number and if they are <=8, <=52
         var toDraw = decks[deckNumber];
         var message = '';
@@ -31,8 +32,8 @@
         } else {
             dialog.send(userID, channelID, 'You have no more card to reveal');
         }
-    }
-    var drawCard = function(deckNumber, cardsNumber) {
+    },
+     drawCard : function(deckNumber, cardsNumber) {
         //todo control parameter: if there are number and if they are <=8, <=52
         var toDraw = decks[deckNumber];
         var message = '';
@@ -58,8 +59,8 @@
             dialog.send(userID, channelID, 'You drawed all the card, shaffle and draw ' + (cardsNumber) + ' cards');
         }
 
-    }
-    var graveyard = function(deckNumber) {
+    },
+     graveyard : function(deckNumber) {
         //todo control parameter: if there are number and if they are <=8
         var toDraw = decks[deckNumber];
 
@@ -77,8 +78,8 @@
             dialog.send(userID, channelID, 'You have no card in the graveyard');
         }
 
-    }
-    var shaffle = function(deckNumber) {
+    },
+     shaffle : function(deckNumber) {
         //todo control parameter: if there are number and if they are <=8
 
         var ordered = [];
@@ -102,11 +103,12 @@
             }
         }
 
-    }
-    var init = function(playerName) {
+    },
+     init : function(playerName) {
         //todo controll the player name
         var deckPosition = deckPosition(playerName);
         // if is the first time it will shaffle two time
         //todo better code
         shaffle(deckPosition);
     }
+};
