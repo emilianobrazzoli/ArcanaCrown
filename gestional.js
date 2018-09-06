@@ -5,7 +5,7 @@
         var decks = [];
 
         // take the position of the player deck
-        function deckPosition(playerName) {
+        var deckPosition = function (playerName) {
             var deckPosition = decks.length;
             for (var x = 0; x < decks.length; x++) {
                 if (decks[x].player === playerName) {
@@ -37,10 +37,19 @@
 
       var init = function(playerName) {
         //todo controll the player name
-        var deckPosition = deckPosition(playerName);
-        // if is the first time it will shaffle two time
-        //todo better code
-        shaffle(deckPosition);
+        var position = deckPosition(playerName);
+        if(position=== (decks.length-1) ){
+            // if is the first time it will shaffle two time
+            //todo better code
+            var toAdd ={
+                card: [],
+                hand: [],
+                graveyard: [],
+                player: playerName
+            };
+            minor.shaffle(toAdd);
+            decks[position]=toAdd;
+        }
     }
 
     module.exports = {

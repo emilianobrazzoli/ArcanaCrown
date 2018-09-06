@@ -20,11 +20,11 @@
 	});
 
 	bot.on('message', function(user, userID, channelID, message, evt) {
-		var respond = gestional.command(user, channelID, message);
+		var respond = gestional.command(userID, channelID, message);
 		
 		bot.sendMessage({
 			to: respond.where,
-			message: '@'+respond.who+' '+ respond.what
+			message: '<@'+respond.who+'> '+ respond.what
 		});
 						
 	});
