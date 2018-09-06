@@ -20,12 +20,16 @@
 	});
 
 	bot.on('message', function(user, userID, channelID, message, evt) {
-		var respond = gestional.command(userID, channelID, message);
 		
-		bot.sendMessage({
-			to: respond.where,
-			message: '<@'+respond.who+'> '+ respond.what
-		});
-						
+		// Our bot needs to know if it will execute a command
+		// It will listen for messages that will start with `/d`
+        if (message.substring(0, 2) == '/d') {
+			var respond = gestional.command(userID, channelID, message);
+			
+			bot.sendMessage({
+				to: respond.where,
+				message: '<@'+respond.who+'> '+ respond.what
+			});
+		}
 	});
 	
