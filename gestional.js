@@ -66,10 +66,6 @@
                     var cmd = args[1];
 
                     switch (cmd) {
-                        // !ping
-                        case 'ping':
-                            alert('pong');
-                            break;
                         case 'draw':
                             if (args.length === 3) {
                                 respond.what = 'draw: '+ minor.drawCard(deck(userID), args[2]);

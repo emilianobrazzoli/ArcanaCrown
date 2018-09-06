@@ -42,7 +42,7 @@ module.exports = {
                     toDraw.graveyard.push(card);
                     message = message + '   ' + card.rank + ' ' + card.suit;
                 } else if (toDraw.card.length === 0) {
-                    message = 'You drawed all the card, shaffle and draw';
+                    message = message+'You drawed all the card, shaffle and'+ (cardsNumber)+' draw';
                     break;
                 } else {
                     message = 'ERROR 02';
@@ -53,7 +53,7 @@ module.exports = {
                 message = 'No found card';
             }
         } else {
-            message = 'You drawed all the card, shaffle and draw ' + (cardsNumber) + ' cards';
+            message = 'You drawed all the card, shaffle and draw';
         }
         return message;
 
