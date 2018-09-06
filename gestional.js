@@ -61,11 +61,7 @@
             if (decks.length >= 80) {
                 respond.what = 'To many deck on memory! At the end of the game reset all!';
             }
-            var boxValue = message;
-            // Our bot needs to know if it will execute a command
-            // It will listen for messages that will start with `/d`
-            if (boxValue.substring(0, 2) == '/d') {
-                var args = boxValue.substring(1).split(' ');
+                var args = message.substring(1).split(' ');
                 if (args.length >= 2) {
                     var cmd = args[1];
 
@@ -120,7 +116,7 @@
                             // Just add any case commands if you want to..
                     }
                 }
-            }
+            
             return respond;
         }
     };
