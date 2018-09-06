@@ -23,7 +23,7 @@ var reveal = function(deckNumber, cardsNumber) {
 		for (var i = 0; i < cardsNumber; i++) {
 			if (toDraw.card.length > 0) {
 				card = toDraw.card[(toDraw.card.length - i - 1)];
-				message = message+'   ' card.rank + ' ' + card.suit;
+				message = message+'   '+ card.rank + ' ' + card.suit;
 			} else if (toDraw.card.length === 0) {
 				bot.sendMessage({
 					to: channelID,
@@ -61,7 +61,7 @@ var drawCard = function(deckNumber, cardsNumber) {
 			if (toDraw.card.length > 0) {
 				card = toDraw.card.splice((toDraw.card.length - 1), 1)[0];
 				toDraw.graveyard.push(card);
-				message = message+'   ' card.rank + ' ' + card.suit;
+				message = message+'   '+ card.rank + ' ' + card.suit;
 			} else if (toDraw.card.length === 0) {
 				bot.sendMessage({
 					to: channelID,
@@ -99,7 +99,7 @@ var graveyard = function(deckNumber) {
 	if (toDraw.graveyard.length > 0) {
 		for (var i = 0; i < toDraw.graveyard.length; i++) {
 			card = toDraw.graveyard[(i)];
-			message=message+'   '+card.rank + ' ' + card.suit);
+			message=message+'   '+card.rank + ' ' + card.suit;
 		}
 		if(message === ''){
 			message = 'No found card';
@@ -176,9 +176,9 @@ var reset= function(){
 
 //Configure logger settings
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-	colorize: true
-});
+//logger.add(logger.transports.Console, {
+//	colorize: true
+//});
 logger.level = 'debug';
 //Initialize Discord Bot
 var bot = new Discord.Client({
