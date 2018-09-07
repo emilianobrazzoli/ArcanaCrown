@@ -38,7 +38,7 @@ module.exports = {
         if (toDraw.card.length > 0 && cardsNumber > 0) {
             for (var i = 0; i < cardsNumber; i++) {
                 if (toDraw.card.length > 0) {
-                    card = toDraw.card.splice((toDraw.card.length - 1), 1)[0];
+                    var card = toDraw.card.splice((toDraw.card.length - 1), 1)[0];
                     toDraw.graveyard.push(card);
                     message = message + '   ' + card.rank + ' ' + card.suit;
                 } else if (toDraw.card.length === 0) {
