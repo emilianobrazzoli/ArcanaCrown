@@ -66,14 +66,14 @@
                     var cmd = args[1];
 
                     switch (cmd) {
-                        case 'draw':
+                        case 'pesca':
                             if (args.length === 3) {
                                 respond.what = 'draw: '+ minor.drawCard(deck(userID), args[2]);
                             } else {
                                 respond.what = 'Command wrong: declare draw how many cards es /d draw 52';
                             }
                             break;
-                        case 'shaffle':
+                        case 'mescola':
                             if (args.length === 2) {
                                 init(userID);
                                 respond.what = 'shaffled';
@@ -81,27 +81,27 @@
                                 respond.what = 'Command wrong: declare a shaffle es /d shaffle';
                             }
                             break;
-                        case 'reveal':
+                        case 'rivela':
                             if (args.length === 3) {
                                 respond.what = 'reveal: '+minor.reveal(deck(userID), args[2]);
                             } else {
                                 respond.what = 'Command wrong: declare reveal how many cards es /d reveal 52';
                             }
                             break;
-                        case 'graveyard':
+                        case 'scarti':
                             if (args.length === 3) {
                                 respond.what = 'graveyard: '+ minor.graveyard(deck(userID));
                             } else {
                                 respond.what = 'Command wrong: declare graveyard and how many cards es /d graveyard 1';
                             }
                             break;
-                        case 'top':
+                        case 'cima':
                             break;
-                        case 'discard':
+                        case 'scarta':
                             break;
-                        case 'hand':
+                        case 'mano':
                             break;
-                        case 'reset':
+                        case 'cancella':
                             if (args.length === 2) {
                                 reset();
                                 respond.what = 'reset all deck!';
