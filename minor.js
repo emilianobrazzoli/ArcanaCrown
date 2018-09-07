@@ -13,7 +13,7 @@ module.exports = {
             }
             for (var i = 0; i < cardsNumber; i++) {
                 if (toDraw.card.length > 0) {
-                    card = toDraw.card[(toDraw.card.length - i - 1)];
+                    var card = toDraw.card[(toDraw.card.length - i - 1)];
                     message = message + '   ' + card.rank + ' ' + card.suit;
                 } else if (toDraw.card.length === 0) {
                     message = message+'\nYou have no more card to reveal';
@@ -65,7 +65,7 @@ module.exports = {
         var message = '';
         if (toDraw.graveyard.length > 0) {
             for (var i = 0; i < toDraw.graveyard.length; i++) {
-                card = toDraw.graveyard[(i)];
+                var card = toDraw.graveyard[(i)];
                 message = message + '   ' + card.rank + ' ' + card.suit;
             }
             if (message === '') {
