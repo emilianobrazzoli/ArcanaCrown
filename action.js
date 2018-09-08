@@ -102,13 +102,13 @@ module.exports = {
         if (localDeck.graveyard.length > 0) {
             for (var i = 0; i < localDeck.graveyard.length; i++) {
                 if(card.type === 'minor'){//future implementation per suite
-                    if(card.rank == localDeck.graveyard[i].rank){
+                    if(card.rank.toString().toLowerCase() == localDeck.graveyard[i].rank.toString().toLowerCase()){
                         var cards = playerDeck.graveyard.splice(i, 1);
                         playerDeck.card.push(cards[0]);
                         done = true;
                     }
                 }else if(card.type === 'major'){
-                    if(card.rank === localDeck.graveyard[i].rank){
+                    if(card.rank.toString().toLowerCase() == localDeck.graveyard[i].rank.toString().toLowerCase()){
                         var cards = localDeck.graveyard.splice(i, 1);
                         playerDeck.card.push(cards[0]);
                         done = true;
