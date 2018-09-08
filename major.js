@@ -1,7 +1,7 @@
     
     var ranks = ['I', 'II', 'III', 'IV','V', 'VI', 'VII', 'VIII','IX', 'X', 'XI', 'XII', 'XIII', 'XIV','XV', 'XVI', 'XVII', 'XVIII','XIX', 'XX', 'XXI', '0'];    
-    var suits = ['Il Bagatto', ' La Papessa', 'L Imperatrice', 'L Imperatore','Il Papa', 'Gli Amanti', 'Il Carro',
-                 'La Forza','L Eremita', 'La Ruota della Fortuna', 'La Giustizia', 'L Appeso','La Morte', 'La Temperanza',
+    var suits = ['Il Bagatto', ' La Papessa', 'L\'Imperatrice', 'L Imperatore','Il Papa', 'Gli Amanti', 'Il Carro',
+                 'La Forza','L\'Eremita', 'La Ruota della Fortuna', 'La Giustizia', 'L\'Appeso','La Morte', 'La Temperanza',
                  'Il Diavolo', 'La Torre','Le Stelle', 'La Luna', 'Il Sole', 'Il Giudizio','Il Mondo','Il Matto'];
 
 
@@ -18,6 +18,7 @@ module.exports = {
                 var card = {};
                 card.suit = suits[i];
                 card.rank = ranks[i];
+                card.type = 'major';
                 ordered.push(card);
         }
 

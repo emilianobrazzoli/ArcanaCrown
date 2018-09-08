@@ -15,6 +15,7 @@ module.exports = {
                 var card = {};
                 card.suit = suits[i];
                 card.rank = ranks[j];
+                card.type = 'minor';
                 ordered.push(card);
             }
         }

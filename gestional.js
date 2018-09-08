@@ -54,9 +54,6 @@
         }
 
         var deck = function (playerName,channel){
-            if (channel.decks.length >= 80) {
-                'Troppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
-            }
             return channel.decks[deckPosition(playerName,channel)];
         }
         // reset all the deck
@@ -116,17 +113,35 @@
                         }
                         break;
                     case 'scarti':
-                        if (args.length === 3) {
+                        if (args.length === 2) {
                             respond.what = 'Il carte pescate sono:\n'+ action.graveyard(deck(userID,channel));
                         } else {
                             respond.what = 'Command wrong: dichiara di accedere al mazzo delle carte pescate es /d scarti';
                         }
                         break;
                     case 'cima':
+                        if (args.length === 3) {
+                            var done =action.top(deck(userID,channel), args[2], 'minor');
+                            if(done){
+                                respond.what = 'Rimescalte nel mazzo';
+                            }else{
+                                respond.what = 'Carte non presenti negli scarti';
+                            }
+                        } else {
+                            respond.what = 'Command wrong: dichiara di mescolare es /d rimetti';
+                        }
                         break;
-                    case 'scarta':
-                        break;
-                    case 'mano':
+                    case 'rimetti':
+                        if (args.length === 3) {
+                            var done =action.place(deck(userID,channel), args[2], 'minor');
+                            if(done){
+                                respond.what = 'Rimescalte nel mazzo';
+                            }else{
+                                respond.what = 'Carte non presenti negli scarti';
+                            }
+                        } else {
+                            respond.what = 'Command wrong: dichiara di mescolare es /d rimetti';
+                        }
                         break;
                     case 'resetta':
                         if (args.length === 2) {
@@ -139,18 +154,22 @@
                         }
                         break;
                     case 'aiuto':
-                        respond.what ='digita /d per il mazzo francese , /t per il mazzo dei tarocchi o /c per il mazzo francese\nseguito da uno dei seguenti comendi:\n'+
+                        respond.what ='digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese\n'+
+                                        'seguito da uno dei seguenti comendi:\n'+
                                         'pesca seguito dal numero di carte da pescare \n'+
                                         'mescola per rimescolare il mazzo con gli scarti\n'+
                                         'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n'+
-                                        'scarti per vedere le carte pescate\n'+
                                         'resetta per resettare le carte di questo canale\n'+
+                                        'scarti per vedere le carte pescate\n'+
                                         'aiuto per rivedere questa pappardella\n';
                         break;
                     default:
                         respond.what = 'digita /d aiuto';
                         break;
                 }
+            }
+            if (channel.decks.length >= 8) {
+                respond.what = respond.what+'\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
             }
             return respond;
         },
@@ -205,18 +224,22 @@
                         }
                         break;
                     case 'aiuto':
-                        respond.what ='digita /d per il mazzo francese , /t per il mazzo dei tarocchi o /c per il mazzo francese\nseguito da uno dei seguenti comendi:\n'+
+                        respond.what ='digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese\n'+
+                                        'seguito da uno dei seguenti comendi:\n'+
                                         'pesca seguito dal numero di carte da pescare \n'+
                                         'mescola per rimescolare il mazzo con gli scarti\n'+
                                         'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n'+
-                                        'scarti per vedere le carte pescate\n'+
                                         'resetta per resettare le carte di questo canale\n'+
+                                        'scarti per vedere le carte pescate\n'+
                                         'aiuto per rivedere questa pappardella\n';
                         break;
                     default:
                         respond.what = 'digita /c aiuto';
                         break;
                 }
+            }
+            if (channel.decks.length >= 8) {
+                respond.what = respond.what+'\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
             }
             return respond;
         }
@@ -272,7 +295,8 @@
                         }
                         break;
                     case 'aiuto':
-                        respond.what ='digita /d per il mazzo francese , /t per il mazzo dei tarocchi o /c per il mazzo francese\nseguito da uno dei seguenti comendi:\n'+
+                        respond.what ='digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese\n'+
+                                        'seguito da uno dei seguenti comendi:\n'+
                                         'pesca seguito dal numero di carte da pescare \n'+
                                         'mescola per rimescolare il mazzo con gli scarti\n'+
                                         'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n'+
@@ -284,6 +308,9 @@
                         respond.what = 'digita /t aiuto';
                         break;
                 }
+            }
+            if (channel.decks.length >= 8) {
+                respond.what = respond.what+'\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
             }
             return respond;
         }
