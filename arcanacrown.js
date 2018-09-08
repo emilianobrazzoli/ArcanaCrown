@@ -1,6 +1,6 @@
 	var Discord = require("discord.js");
 	//var logger = require('winston');
-	var auth = require('./auth.jason');   // for local
+	var auth = require('./auth.json');   // for local
 	var gestional = require('./gestional.js');
 	//logger.level = 'debug';
 
