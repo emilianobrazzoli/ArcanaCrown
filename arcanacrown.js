@@ -1,43 +1,50 @@
-	var Discord = require('discord.io');
-	var logger = require('winston');
+	var Discord = require("discord.js");
+	//var logger = require('winston');
 	//var auth = require('./auth.json');   // for local
 	var gestional = require('./gestional.js');
-        
+	//logger.level = 'debug';
 
-
-	logger.level = 'debug';
-
+  console.log('Your app is init');
 	//Initialize Discord Bot
-	var bot = new Discord.Client({
-	    token:  process.env.TOKEN, 
-	    autorun: true
+	var bot = new Discord.Client();
+
+	var cmd = function( message) {
+      if (message.content.substring(0, 2) == '/d') {
+        var respond = gestional.commandDecks(message.member, message.channel, message.content);
+        message.reply( '\n'+respond.what);
+		  }else if (message.content.substring(0, 2) == '/c') {
+        var respond = gestional.commandCommon(message.member, message.channel, message.content);
+        message.reply( '\n'+respond.what);
+		  }else if (message.content.substring(0, 2) == '/t') {
+        var respond = gestional.commandTarot(message.member, message.channel, message.content);
+        message.reply( '\n'+respond.what);
+		  }
+	};
+
+  bot.on("ready", () =>  {
+	    console.log('Connected');
+	    console.log('Logged in as: ');
+	    console.log(bot.username + ' - (' + bot.id + ')');
 	});
 
-	//auth code local
-	// var bot = new Discord.Client({
-	//     token: auth.token, 
-	//     autorun: true
-	// });
+  // message.channel
+	bot.on('message',  message =>{
+      cmd(message);
+      });
 
-
-	
-	bot.on('ready', function(evt) {
-	    logger.info('Connected');
-	    logger.info('Logged in as: ');
-	    logger.info(bot.username + ' - (' + bot.id + ')');
-	});
-
-	bot.on('message', function(user, userID, channelID, message, evt) {
-		
-		// Our bot needs to know if it will execute a command
-		// It will listen for messages that will start with `/d`
-        if (message.substring(0, 2) == '/d') {
-			var respond = gestional.command(userID, channelID, message);
-			
-			bot.sendMessage({
-				to: respond.where,
-				message: '<@'+respond.who+'> '+ respond.what
-			});
-		}
-	});
-	
+  bot.login(process.env.TOKEN);
+  console.log('Your app create bot' );
+  
+  //cofeeeeeeee every 3 minuts
+  /**/
+  const http = require('http');
+  const express = require('express');
+  const app = express();
+  app.get("/", (request, response) => {
+    console.log(Date.now() + " Ping Received");
+    response.sendStatus(200);
+  });
+  app.listen(process.env.PORT);
+  setInterval(() => {
+    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+  }, 200000);

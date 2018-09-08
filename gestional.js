@@ -1,19 +1,45 @@
 
 
-    var minor = require('./minor.js');
-    
-        var decks = [];
+        var minor = require('./minor.js');
+        var memory = require('./memory.js');
+        var major = require('./major.js');
+        var action = require('./action.js');    
+        var channel = [];
 
+  
+    
+        var common = function (channel){
+              if(channel.c=== null){
+                  var toAdd ={
+                        card: [],
+                        graveyard: []
+                  };
+                  minor.shaffle(toAdd);
+                  channel.c=toAdd;
+              }
+              return channel.c;
+        }
+        var tarot = function (channel){
+              if(channel.t=== null){
+                  var toAdd ={
+                        card: [],
+                        graveyard: []
+                  };
+                  major.shaffle(toAdd);
+                  channel.t=toAdd;
+              }
+              return channel.t;
+        }
         // take the position of the player deck
-        var deckPosition = function (playerName) {
-            var deckPosition = decks.length;
-            for (var x = 0; x < decks.length; x++) {
-                if (decks[x].player === playerName) {
-                    deckPosition = x
+        var deckPosition = function (playerName,channel) {
+            var position = channel.decks.length;
+            for (var x = 0; x < channel.decks.length; x++) {
+                if (channel.decks[x].player === playerName) {
+                    position = x
                 }
             }
             //if there isn't a deck it will create one
-            if (deckPosition === decks.length) {
+            if (position === channel.decks.length) {
                 var toAdd ={
                     card: [],
                     hand: [],
@@ -21,98 +47,244 @@
                     player: playerName
                 };
                 minor.shaffle(toAdd);
-                decks.push(toAdd);
+                channel.decks.push(toAdd);
             }
 
-            return deckPosition;
+            return position;
         }
 
-        var deck = function (playerName){
-            return decks[deckPosition(playerName)];
+        var deck = function (playerName,channel){
+            if (channel.decks.length >= 80) {
+                'Troppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
+            }
+            return channel.decks[deckPosition(playerName,channel)];
         }
         // reset all the deck
-        var reset = function() {
-            decks = [];
+        var reset = function(channel) {
+            channel.decks = [];
         }
 
-      var init = function(playerName) {
-        //todo controll the player name
-        var position = deckPosition(playerName);
-        if(position=== (decks.length-1) ){
-            // if is the first time it will shaffle two time
-            //todo better code
-            var toAdd ={
-                card: [],
-                hand: [],
-                graveyard: [],
-                player: playerName
-            };
-            minor.shaffle(toAdd);
-            decks[position]=toAdd;
+        var init = function(playerName,channel) {
+          //todo controll the player name
+          var position = deckPosition(playerName,channel);
+          if(position=== (channel.decks.length-1) ){
+              // if is the first time it will shaffle two time
+              //todo better code
+              var toAdd ={
+                  card: [],
+                  hand: [],
+                  graveyard: [],
+                  player: playerName
+              };
+              minor.shaffle(toAdd);
+              channel.decks[position]=toAdd;
+          }
         }
-    }
 
     module.exports = {
-        command : function(userID, channelID, message) {
+        commandDecks : function(userID, channelID, message) {
             var respond ={ who: userID,
-                what:'Cannot find an appropriate answer',
+                what:'Il futuro tace',
                 where:channelID
             }
-            if (decks.length >= 80) {
-                respond.what = 'To many deck on memory! At the end of the game reset all!';
-            }
-                var args = message.substring(1).split(' ');
-                if (args.length >= 2) {
-                    var cmd = args[1];
+            var channel = memory.getChannel(channelID);
+            var args = message.substring(1).split(' ');
+            if (args.length >= 2) {
+                var cmd = args[1];
 
-                    switch (cmd) {
-                        case 'pesca':
-                            if (args.length === 3) {
-                                respond.what = 'draw: '+ minor.drawCard(deck(userID), args[2]);
-                            } else {
-                                respond.what = 'Command wrong: declare draw how many cards es /d draw 52';
-                            }
-                            break;
-                        case 'mescola':
-                            if (args.length === 2) {
-                                init(userID);
-                                respond.what = 'shaffled';
-                            } else {
-                                respond.what = 'Command wrong: declare a shaffle es /d shaffle';
-                            }
-                            break;
-                        case 'rivela':
-                            if (args.length === 3) {
-                                respond.what = 'reveal: '+minor.reveal(deck(userID), args[2]);
-                            } else {
-                                respond.what = 'Command wrong: declare reveal how many cards es /d reveal 52';
-                            }
-                            break;
-                        case 'scarti':
-                            if (args.length === 3) {
-                                respond.what = 'graveyard: '+ minor.graveyard(deck(userID));
-                            } else {
-                                respond.what = 'Command wrong: declare graveyard and how many cards es /d graveyard 1';
-                            }
-                            break;
-                        case 'cima':
-                            break;
-                        case 'scarta':
-                            break;
-                        case 'mano':
-                            break;
-                        case 'cancella':
-                            if (args.length === 2) {
-                                reset();
-                                respond.what = 'reset all deck!';
-                            } else {
-                                respond.what = 'Command wrong: declare reset /d reset';
-                            }
-                            break;
-                            // Just add any case commands if you want to..
-                    }
+                switch (cmd) {
+                    case 'pesca':
+                        if (args.length === 3) {
+                            respond.what = 'Peschi in ordine:\n'+ action.drawCard(deck(userID,channel), args[2]);
+                        } else {
+                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /d draw 52';
+                        }
+                        break;
+                    case 'mescola':
+                        if (args.length === 2) {
+                            init(userID,channel);
+                            respond.what = 'Mescolato';
+                        } else {
+                            respond.what = 'Command wrong: dichiara di mescolare il tuo mazzo es /d mescola';
+                        }
+                        break;
+                    case 'rivela':
+                        if (args.length === 3) {
+                            respond.what = 'Le prossime carte in ordine sono:\n'+action.reveal(deck(userID,channel), args[2]);
+                        } else {
+                            respond.what = 'Command wrong:dichiara quante carte vuoi rivelare dalla cima del mazzo es /d rivela 52';
+                        }
+                        break;
+                    case 'scarti':
+                        if (args.length === 3) {
+                            respond.what = 'Il carte pescate sono:\n'+ action.graveyard(deck(userID,channel));
+                        } else {
+                            respond.what = 'Command wrong: dichiara di accedere al mazzo delle carte pescate es /d scarti';
+                        }
+                        break;
+                    case 'cima':
+                        break;
+                    case 'scarta':
+                        break;
+                    case 'mano':
+                        break;
+                    case 'resetta':
+                        if (args.length === 2) {
+                            major.shaffle(tarot(channel));
+                            minor.shaffle(common(channel));
+                            reset(channel);
+                            respond.what = 'resettato tutti i mazzi!';
+                        } else {
+                            respond.what = 'Command wrong: dichiara resetta es /d reset';
+                        }
+                        break;
+                    case 'aiuto':
+                        respond.what ='digita /d per il mazzo francese , /t per il mazzo dei tarocchi o /c per il mazzo francese\nseguito da uno dei seguenti comendi:\n'+
+                                        'pesca seguito dal numero di carte da pescare \n'+
+                                        'mescola per rimescolare il mazzo con gli scarti\n'+
+                                        'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n'+
+                                        'scarti per vedere le carte pescate\n'+
+                                        'resetta per resettare le carte di questo canale\n'+
+                                        'aiuto per rivedere questa pappardella\n';
+                        break;
+                    default:
+                        respond.what = 'digita /d aiuto';
+                        break;
                 }
-            
+            }
+            return respond;
+        },
+      commandCommon :function(userID, channelID, message) {
+            var respond ={ who: userID,
+                what:'Il futuro tace',
+                where:channelID
+            }
+            var channel = memory.getChannel(channelID);
+            var args = message.substring(1).split(' ');
+            if (args.length >= 2) {
+                var cmd = args[1];
+
+                switch (cmd) {
+                    case 'pesca':
+                        if (args.length === 3) {
+                            respond.what = 'Peschi in ordine:\n'+ action.drawCard(common(channel), args[2]);
+                        } else {
+                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /c draw 52';
+                        }
+                        break;
+                    case 'mescola':
+                        if (args.length === 2) {
+                            minor.shaffle(common(channel))
+                            respond.what = 'Mescolato';
+                        } else {
+                            respond.what = 'Command wrong: dichiara di mescolare il tuo mazzo es /c mescola';
+                        }
+                        break;
+                    case 'resetta':
+                        if (args.length === 2) {
+                            major.shaffle(tarot(channel));
+                            minor.shaffle(common(channel));
+                            reset(channel);
+                            respond.what = 'resettato tutti i mazzi!';
+                        } else {
+                            respond.what = 'Command wrong: dichiara resetta es /d reset';
+                        }
+                        break;
+                    case 'rivela':
+                        if (args.length === 3) {
+                            respond.what = 'Le prossime carte in ordine sono:\n'+action.reveal(common(channel), args[2]);
+                        } else {
+                            respond.what = 'Command wrong:dichiara quante carte vuoi rivelare dalla cima del mazzo es /c rivela 52';
+                        }
+                        break;
+                    case 'scarti':
+                        if (args.length === 3) {
+                            respond.what = 'Il carte pescate sono:\n'+ action.graveyard(common(channel));
+                        } else {
+                            respond.what = 'Command wrong: dichiara di accedere al mazzo delle carte pescate es /c scarti';
+                        }
+                        break;
+                    case 'aiuto':
+                        respond.what ='digita /d per il mazzo francese , /t per il mazzo dei tarocchi o /c per il mazzo francese\nseguito da uno dei seguenti comendi:\n'+
+                                        'pesca seguito dal numero di carte da pescare \n'+
+                                        'mescola per rimescolare il mazzo con gli scarti\n'+
+                                        'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n'+
+                                        'scarti per vedere le carte pescate\n'+
+                                        'resetta per resettare le carte di questo canale\n'+
+                                        'aiuto per rivedere questa pappardella\n';
+                        break;
+                    default:
+                        respond.what = 'digita /c aiuto';
+                        break;
+                }
+            }
+            return respond;
+        }
+      ,
+      commandTarot :function(userID, channelID, message) {
+            var respond ={ who: userID,
+                what:'Il futuro tace',
+                where:channelID
+            }
+            var channel = memory.getChannel(channelID);
+            var args = message.substring(1).split(' ');
+            if (args.length >= 2) {
+                var cmd = args[1];
+
+                switch (cmd) {
+                    case 'pesca':
+                        if (args.length === 3) {
+                            respond.what = 'Peschi in ordine:\n'+ action.drawCard(tarot(channel), args[2]);
+                        } else {
+                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /t draw 52';
+                        }
+                        break;
+                    case 'mescola':
+                        if (args.length === 2) {
+                            major.shaffle(tarot(channel))
+                            respond.what = 'Mescolato';
+                        } else {
+                            respond.what = 'Command wrong: dichiara di mescolare il tuo mazzo es /t mescola';
+                        }
+                        break;
+                    case 'rivela':
+                        if (args.length === 3) {
+                            respond.what = 'Le prossime carte in ordine sono:\n'+action.reveal(tarot(channel), args[2]);
+                        } else {
+                            respond.what = 'Command wrong:dichiara quante carte vuoi rivelare dalla cima del mazzo es /t rivela 52';
+                        }
+                        break;
+                    case 'resetta':
+                        if (args.length === 2) {
+                            major.shaffle(tarot(channel));
+                            minor.shaffle(common(channel));
+                            reset(channel);
+                            respond.what = 'resettato tutti i mazzi!';
+                        } else {
+                            respond.what = 'Command wrong: dichiara resetta es /d reset';
+                        }
+                        break;
+                    case 'scarti':
+                        if (args.length === 3) {
+                            respond.what = 'Il carte pescate sono:\n'+ action.graveyard(tarot(channel));
+                        } else {
+                            respond.what = 'Command wrong: dichiara di accedere al mazzo delle carte pescate es /t scarti';
+                        }
+                        break;
+                    case 'aiuto':
+                        respond.what ='digita /d per il mazzo francese , /t per il mazzo dei tarocchi o /c per il mazzo francese\nseguito da uno dei seguenti comendi:\n'+
+                                        'pesca seguito dal numero di carte da pescare \n'+
+                                        'mescola per rimescolare il mazzo con gli scarti\n'+
+                                        'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n'+
+                                        'resetta per resettare le carte di questo canale\n'+
+                                        'scarti per vedere le carte pescate\n'+
+                                        'aiuto per rivedere questa pappardella\n';
+                        break;
+                    default:
+                        respond.what = 'digita /t aiuto';
+                        break;
+                }
+            }
             return respond;
         }
     };

@@ -1,4 +1,3 @@
-
 {
   "name": "arcanacrown",
   "version": "1.0.0",
@@ -10,7 +9,7 @@
   },
   "engines": {
     "node": "6.11.2"
-  }, 
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/emilianobrazzoli/arcanaCrown.git"
@@ -19,6 +18,9 @@
   "license": "MIT",
   "dependencies": {
     "discord.io": "^2.5.3",
-    "winston": "^3.1.0"
+    "winston": "^3.1.0",
+    "request": "^2.88.0",
+    "express": "^4.16.3",
+    "discord.js": "^11.4.2"
   }
 }
