@@ -32,6 +32,20 @@
 				cmd(message);
 				});
 
-		//bot.login(process.env.TOKEN); ---> server glithc
+		//bot.login(process.env.TOKEN); ---> server glitch
 		bot.login(auth.token);
 		console.log('Your app create bot' );
+
+		//cofeeeeeeee every 3 minuts server glitch
+		/*
+		const http = require('http');
+		const express = require('express');
+		const app = express();
+		app.get("/", (request, response) => {
+			console.log(Date.now() + " Ping Received");
+			response.sendStatus(200);
+		});
+		app.listen(process.env.PORT);
+		setInterval(() => {
+			http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+		}, 200000);*/

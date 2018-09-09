@@ -168,7 +168,7 @@
                         break;
                 }
             }
-            if (channel.decks.length >= 8) {
+            if (channel.decks.length >= 10) {
                 respond.what = respond.what+'\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
             }
             return respond;
@@ -238,7 +238,7 @@
                         break;
                 }
             }
-            if (channel.decks.length >= 8) {
+            if (channel.decks.length >= 10) {
                 respond.what = respond.what+'\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
             }
             return respond;
@@ -309,7 +309,7 @@
                         break;
                 }
             }
-            if (channel.decks.length >= 8) {
+            if (channel.decks.length >= 10) {
                 respond.what = respond.what+'\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta!';
             }
             return respond;
