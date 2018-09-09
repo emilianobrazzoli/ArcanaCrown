@@ -8,18 +8,19 @@
 			//Initialize Discord Bot
 			var bot = new Discord.Client();
 
-			var cmd = function(message) {
-				if (message.content.substring(0, 2) == '/d') {
-					var respond = gestional.commandDecks(message.member, message.channel, message.content);
-					message.reply('\n' + respond.what);
-				} else if (message.content.substring(0, 2) == '/c') {
-					var respond = gestional.commandCommon(message.member, message.channel, message.content);
-					message.reply('\n' + respond.what);
-				} else if (message.content.substring(0, 2) == '/t') {
-					var respond = gestional.commandTarot(message.member, message.channel, message.content);
-					message.reply('\n' + respond.what);
+			var cmd = function( message) {
+			if (message.content.substring(0, 2) == '/d') {
+				var respond = gestional.commandDecks(message.member, message.channel, message.content.toString().toLowerCase());
+				message.reply( '\n'+respond.what);
+				}else if (message.content.substring(0, 2) == '/c') {
+				var respond = gestional.commandCommon(message.member, message.channel, message.content.toString().toLowerCase());
+				message.reply( '\n'+respond.what);
+				}else if (message.content.substring(0, 2) == '/t') {
+				var respond = gestional.commandTarot(message.member, message.channel, message.content.toString().toLowerCase());
+				message.reply( '\n'+respond.what);
 				}
 			};
+
 
 			bot.on("ready", () => {
 				console.log('Connected');

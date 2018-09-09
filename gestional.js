@@ -176,6 +176,8 @@
                         respond.what = 'digita /d aiuto';
                         break;
                 }
+            }else{
+                respond.what = 'digita /d aiuto';
             }
             if (channel.decks.length >= 10) {
                 respond.what = respond.what + '\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta\nResettarai tutti i mazzi del canale';
@@ -281,9 +283,8 @@
                         respond.what = 'digita /c aiuto';
                         break;
                 }
-            }
-            if (channel.decks.length >= 10) {
-                respond.what = respond.what + '\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta\nResettarai tutti i mazzi del canale';
+            }else{
+                respond.what = 'digita /c aiuto';
             }
             return respond;
         },
@@ -386,9 +387,8 @@
                         respond.what = 'digita /t aiuto';
                         break;
                 }
-            }
-            if (channel.decks.length >= 10) {
-                respond.what = respond.what + '\nTroppo mazzi per un cartomante! Quando finisci la partita lancia un: /d resetta\nResettarai tutti i mazzi del canale';
+            }else{
+                respond.what = 'digita /t aiuto';
             }
             return respond;
         }
