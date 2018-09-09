@@ -1,11 +1,14 @@
 # ArcanaCrown
 <br />
-An Italian bot for managment of the card (created for rpg with tarot or card system)<br />
+<h6>Info</h6>
+An Italian bot for managment of the card (created for rpg with tarot or card system)<br /><br />
+Un Bot Italiano per la gestione di carte francesi e tarocchi (utile per rpg o gdr con card system)<br />
 <br />
-/d --> personal deck of 52 french card (unique for channel)<br />
-/c --> common deck of 52 french card (unique for channel)<br />
-/t --> common deck of 22 tarot card (unique for channel)<br />
+/d -->  deck di 52 carte francesi (unico per canale testuale di digitazione)<br />
+/c -->  deck di 52 carte francesi (unico per canale testuale di digitazione)<br />
+/t -->  deck di 22 tarocchi (unico per canale testuale di digitazione)<br />
 <br /><br />
+<h6>Comandi</h6>
 <ul>
 <li>digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese</li>
 <li>seguito da uno dei seguenti comendi:</li> 
@@ -21,9 +24,7 @@ An Italian bot for managment of the card (created for rpg with tarot or card sys
 <br />
 <br />
 <br />
-Link dell'app hostata:
+<md-button href="https://discordapp.com/oauth2/authorize?&client_id=487306984660664331&scope=bot&permissions=3072" class="md-raised"> Link bot discord</md-button>
 <br />
-https://discordapp.com/oauth2/authorize?&client_id=487306984660664331&scope=bot&permissions=3072
-<br />
-<h6>ON WORK</h6><br /><br />
+<h6>ON WORK</h6>
 Servizio di memoria per gestione db dei mazzi
