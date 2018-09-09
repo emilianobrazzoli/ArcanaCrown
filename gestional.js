@@ -93,7 +93,7 @@
                         if (args.length === 3) {
                             respond.what = 'Peschi in ordine:\n' + action.drawCard(deck(userID, channel), args[2]);
                         } else {
-                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /d draw 52';
+                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /d pesca 52';
                         }
                         break;
                     case 'comincia':
@@ -200,7 +200,7 @@
                         if (args.length === 3) {
                             respond.what = 'Peschi in ordine:\n' + action.drawCard(common(channel), args[2]);
                         } else {
-                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /c draw 52';
+                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /c pesca 52';
                         }
                         break;
                     case 'comincia':
@@ -304,7 +304,7 @@
                         if (args.length === 3) {
                             respond.what = 'Peschi in ordine:\n' + action.drawCard(tarot(channel), args[2]);
                         } else {
-                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /t draw 52';
+                            respond.what = 'Command wrong: dichiara quante carte vuoi pescare dal tuo deck es /t pesca 22';
                         }
                         break;
                     case 'comincia':
@@ -327,7 +327,7 @@
                         if (args.length === 3) {
                             respond.what = 'Le prossime carte in ordine sono:\n' + action.reveal(tarot(channel), args[2]);
                         } else {
-                            respond.what = 'Command wrong:dichiara quante carte vuoi rivelare dalla cima del mazzo es /t rivela 52';
+                            respond.what = 'Command wrong:dichiara quante carte vuoi rivelare dalla cima del mazzo es /t rivela 22';
                         }
                         break;
                     case 'resetta':
