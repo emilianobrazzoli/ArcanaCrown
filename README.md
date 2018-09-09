@@ -2,9 +2,10 @@
 <h3>Info</h3>
 <p>An Italian bot for managment of the card (created for rpg with tarot or card system)<br /><br /> Un Bot Italiano per la gestione di carte francesi e tarocchi (utile per rpg o gdr con card system)<br /> <br /> /d --&gt; deck di 52 carte francesi (unico per canale testuale di digitazione)<br /> /c --&gt; deck di 52 carte francesi (unico per canale testuale di digitazione)<br /> /t --&gt; deck di 22 tarocchi (unico per canale testuale di digitazione)<br /> <br /><br /></p>
 <h3>Comandi</h3>
+
+digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese<br /> 
+seguito da uno dei seguenti comendi:<br /> 
 <ul>
-<li>digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese</li>
-<li>seguito da uno dei seguenti comendi:</li>
 <li>pesca seguito dal numero di carte da pescare</li>
 <li>comincia per rimescolare il mazzo con gli scarti</li>
 <li>mescola per mescolare il mazzo</li>
