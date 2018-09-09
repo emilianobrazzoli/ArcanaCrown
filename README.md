@@ -18,4 +18,7 @@ rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)<br />
 aiuto per rivedere questa pappardella<br />
 <br />
 <br />
+<br />
+Link dell'app hostata:
+<br />
 https://discordapp.com/oauth2/authorize?&client_id=487306984660664331&scope=bot&permissions=3072
