@@ -5,7 +5,7 @@ An Italian bot for managment of the card (created for rpg with tarot or card sys
 /d --> personal deck of 52 french card (unique for channel)<br />
 /c --> common deck of 52 french card (unique for channel)<br />
 /t --> common deck of 22 tarot card (unique for channel)<br />
-
+<br /><br />
 digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese<br />
 seguito da uno dei seguenti comendi:<br /> 
 pesca seguito dal numero di carte da pescare <br /> 
