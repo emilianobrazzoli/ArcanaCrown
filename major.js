@@ -6,10 +6,10 @@
 
 
         module.exports = {
-
+            //eheheheh
             shaffle: function(playerDeck) {
                 //todo control parameter: if there are number and if they are <=8
-
+                playerDeck.card = [];
                 var ordered = [];
                 //for each type of suit
                 for (var i = 0; i < suits.length; i++) {

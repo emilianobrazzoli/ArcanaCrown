@@ -2,8 +2,10 @@
         var ranks = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
 
         module.exports = {
+            //eheheheh
             shaffle: function(playerDeck) {
                 //todo control parameter: if there are number and if they are <=8
+                playerDeck.card = [];
 
                 var ordered = [];
                 //for each type of suit
