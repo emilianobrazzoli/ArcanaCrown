@@ -4,7 +4,7 @@
 <h3>Comandi</h3>
 
 digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese<br /> 
-seguito da uno dei seguenti comendi:<br /> 
+seguito da uno dei seguenti comandi:<br /> 
 <ul>
 <li>pesca seguito dal numero di carte da pescare</li>
 <li>comincia per rimescolare il mazzo con gli scarti</li>
@@ -13,10 +13,11 @@ seguito da uno dei seguenti comendi:<br />
 <li>scarti per vedere le carte pescate</li>
 <li>cima per mettere in cima al mazzo delle carte dagli scarti (con quel numero)</li>
 <li>rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)</li>
-<li>aiuto per rivedere questa pappardella</li>
+<li>aiuto per vedere questa pappardella</li>
 </ul>
 <h3>BOT</h3>
-<p><br /> Link bot discord: https://discordapp.com/oauth2/authorize?&amp;client_id=487306984660664331&amp;scope=bot&amp;permissions=3072 <br />Per problemi con l'app ofline cliccare qui:&nbsp;<a href="https://emilianobrazzoli-arcanacrown.glitch.me/">https://emilianobrazzoli-arcanacrown.glitch.me/</a></p>
-<p>Se vi sono dubbi sono diponibile a essere contatto da questo profilo github.</p>
+<p><br /> Link bot discord: https://discordapp.com/oauth2/authorize?&amp;client_id=487306984660664331&amp;scope=bot&amp;permissions=3072 <br />Per problemi con l'app offline cliccare qui:&nbsp;<a href="https://emilianobrazzoli-arcanacrown.glitch.me/">https://emilianobrazzoli-arcanacrown.glitch.me/</a></p>
+<p>Se vi sono dubbi sono disponibile a essere contattato da questo profilo github.</p>
 <h3>In sviluppo</h3>
-<p>Servizio di memoria per gestione db dei mazzi con secondo bot di magazino: memoryarcana (in coming)</p>
+<p>Servizio di memoria per gestione db dei mazzi con secondo bot di magazino: memoryarcana</p>
+<br /> Link git per progetto rest and db: https://github.com/emilianobrazzoli/memoryArcana
