@@ -1,3 +1,5 @@
+//DEPRECATE----> substituted with memoryarcana
+/*
         var channel = [];
         var positionChannel = function(channelID) {
             var position = channel.length;
@@ -34,4 +36,4 @@
             getChannel: function(channelID) {
                 return getChannel(channelID);
             }
-        }
+        }*/
