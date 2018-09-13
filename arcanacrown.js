@@ -9,10 +9,13 @@ var bot = new Discord.Client();
 
 var cmd = function(message) {
     if (message.content.substring(0, 2) == '/d') {
+        console.log(message.author.id+' in '+ message.channel.id+' do '+ message.content.toString());
         var respond = gestional.commandDecks(message.author.id, message.channel.id, message.content.toString().toLowerCase(), message);
     } else if (message.content.substring(0, 2) == '/c') {
+        console.log(message.author.id+' in '+ message.channel.id+' do '+ message.content.toString());
         var respond = gestional.commandCommon(message.author.id, message.channel.id, message.content.toString().toLowerCase(), message);
     } else if (message.content.substring(0, 2) == '/t') {
+        console.log(message.author.id+' in '+ message.channel.id+' do '+ message.content.toString());
         var respond = gestional.commandTarot(message.author.id, message.channel.id, message.content.toString().toLowerCase(), message);
     }
 };
