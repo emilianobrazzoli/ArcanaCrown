@@ -5,7 +5,7 @@ var clean = function() {
 }
 
 var findById = function(channelID) {
-    var db = new JsonDB('arcanaDB', true, false);
+    var db = new JsonDB('arcanaDB', false, false);
     db.reload();
     try {
         var find = db.getData('/channelList/' + channelID);
@@ -22,13 +22,12 @@ var findById = function(channelID) {
 
 
 var merge = function(channelID, channelToMerge) {
-    var db = new JsonDB('arcanaDB', true, false);
+    var db = new JsonDB('arcanaDB', false, false);
     try {
         db.push('/channelList/' + channelID, channelToMerge);
         db.save();
         db.reload();
         clean();
-        console.log('Server merged: ' + channelID);
         return true;
     } catch (error) {
         console.log('Server merge error: ' + error);

@@ -46,7 +46,6 @@ var deckPosition = function(playerName, channel) {
         minor.shaffle(toAdd);
         channel.decks.push(toAdd);
     }
-
     return position;
 }
 
@@ -162,15 +161,15 @@ module.exports = {
                     break;
                 case 'aiuto':
                     respond.what = 'digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese\n' +
-                        'seguito da uno dei seguenti comendi:\n' +
-                        'pesca seguito dal numero di carte da pescare \n' +
-                        'comincia per rimescolare il mazzo con gli scarti\n' +
-                        'mescola per mescolare il mazzo\n' +
-                        'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n' +
-                        'scarti per vedere le carte pescate\n' +
-                        'cima per mettere in cima al mazzo delle carte dagli scarti (con quel numero)\n' +
-                        'rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)\n' +
-                        'aiuto per rivedere questa pappardella\n';
+                        'seguito da uno dei seguenti comandi:\n' +
+                        '/d pesca seguito dal numero di carte da pescare \n' +
+                        '/d comincia per rimescolare il mazzo con gli scarti\n' +
+                        '/d mescola per mescolare il mazzo\n' +
+                        '/d rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n' +
+                        '/d scarti per vedere le carte pescate\n' +
+                        '/d cima per mettere in cima al mazzo delle carte dagli scarti (con quel numero)\n' +
+                        '/d rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)\n' +
+                        '/d aiuto per rivedere questa pappardella\n';
                     break;
                 default:
                     respond.what = 'digita /d aiuto';
@@ -271,15 +270,15 @@ module.exports = {
                     break;
                 case 'aiuto':
                     respond.what = 'digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese\n' +
-                        'seguito da uno dei seguenti comendi:\n' +
-                        'pesca seguito dal numero di carte da pescare \n' +
-                        'comincia per rimescolare il mazzo con gli scarti\n' +
-                        'mescola per mescolare il mazzo\n' +
-                        'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n' +
-                        'scarti per vedere le carte pescate\n' +
-                        'cima per mettere in cima al mazzo delle carte dagli scarti (con quel numero)\n' +
-                        'rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)\n' +
-                        'aiuto per rivedere questa pappardella\n';
+                        'seguito da uno dei seguenti comandi:\n' +
+                        '/c pesca seguito dal numero di carte da pescare \n' +
+                        '/c comincia per rimescolare il mazzo con gli scarti\n' +
+                        '/c mescola per mescolare il mazzo\n' +
+                        '/c rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n' +
+                        '/c scarti per vedere le carte pescate\n' +
+                        '/c cima per mettere in cima al mazzo delle carte dagli scarti (con quel numero)\n' +
+                        '/c rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)\n' +
+                        '/c aiuto per rivedere questa pappardella\n';
                     break;
                 default:
                     respond.what = 'digita /c aiuto';
@@ -378,15 +377,15 @@ module.exports = {
                     break;
                 case 'aiuto':
                     respond.what = 'digita /d per il tuo mazzo francese , /t per il mazzo condiviso dei tarocchi o /c per il mazzo condiviso francese\n' +
-                        'seguito da uno dei seguenti comendi:\n' +
-                        'pesca seguito dal numero di carte da pescare \n' +
-                        'comincia per rimescolare il mazzo con gli scarti\n' +
-                        'mescola per mescolare il mazzo\n' +
-                        'rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n' +
-                        'scarti per vedere le carte pescate\n' +
-                        'cima per mettere in cima al mazzo delle carte dagli scarti (con quel numero)\n' +
-                        'rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)\n' +
-                        'aiuto per rivedere questa pappardella\n';
+                        'seguito da uno dei seguenti comandi:\n' +
+                        '/t pesca seguito dal numero di carte da pescare \n' +
+                        '/t comincia per rimescolare il mazzo con gli scarti\n' +
+                        '/t mescola per mescolare il mazzo\n' +
+                        '/t rivela seguito dal numero di carte da rivelare dalla cima del mazzo \n' +
+                        '/t scarti per vedere le carte pescate\n' +
+                        '/t cima per mettere in cima al mazzo delle carte dagli scarti (con quel numero)\n' +
+                        '/t rimetti per mettere nel mazzo delle carte dagli scarti (con quel numero)\n' +
+                        '/t aiuto per rivedere questa pappardella\n';
                     break;
                 default:
                     respond.what = 'digita /t aiuto';

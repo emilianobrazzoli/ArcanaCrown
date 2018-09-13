@@ -4,7 +4,6 @@ var Discord = require("discord.js");
 var gestional = require('./gestional.js');
 //logger.level = 'debug';
 
-console.log('Your app is init');
 //Initialize Discord Bot
 var bot = new Discord.Client();
 
@@ -19,8 +18,6 @@ var cmd = function(message) {
 };
 
 bot.on("ready", () => {
-    console.log('Connected');
-    console.log('Logged');
     console.log('Arcana Crown will open a portal');
 });
 
@@ -30,6 +27,17 @@ bot.on('message', message => {
 });
 
 bot.login(process.env.TOKEN);
-console.log('Your app create bot');
 
-console.log(Date.now() + " Can we meet at the a coffee machine?");
+//coffeeeeee every 3 minuts
+/**/
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+    response.sendStatus(200);
+});
+app.listen(process.env.PORT);
+setInterval(() => {
+    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+    http.get(`http://caffeinabot.glitch.me/`);
+}, 280000);

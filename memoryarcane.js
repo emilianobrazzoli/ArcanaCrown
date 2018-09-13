@@ -14,8 +14,8 @@ var find = function(channelID) {
         delegate.create(toAdd);
         return toAdd;
     } else {
-        console.log('found ' + channel.id);
         return channel;
+        console.log('modify channel');
     }
 
 }
@@ -27,6 +27,7 @@ var getChannel = function(channelID) {
 
 var setChannel = function(channelID, channelToAdd) {
     try {
+        channelToAdd.inertTime = Date.now() ;
         delegate.merge(channelID, channelToAdd);
         return channelToAdd;
     } catch (error) {
