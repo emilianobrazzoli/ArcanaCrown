@@ -6,7 +6,6 @@ var clean = function() {
 
 var findById = function(channelID) {
     var db = new JsonDB('arcanaDB', false, false);
-    db.reload();
     try {
         var find = db.getData('/channelList/' + channelID);
         if (find === null || find === undefined) {
@@ -26,7 +25,6 @@ var merge = function(channelID, channelToMerge) {
     try {
         db.push('/channelList/' + channelID, channelToMerge);
         db.save();
-        db.reload();
         clean();
         return true;
     } catch (error) {
