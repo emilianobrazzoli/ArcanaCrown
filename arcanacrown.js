@@ -40,4 +40,5 @@ app.listen(process.env.PORT);
 setInterval(() => {
     http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
     http.get(`http://caffeinabot.glitch.me/`);
+    http.get(`http://caffeinabot2.glitch.me/`);
 }, 280000);
