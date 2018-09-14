@@ -28,12 +28,7 @@ bot.on("ready", () => {
 bot.on('message', message => {
     cmd(message);
 });
-const aws = require('aws-sdk');
-
-let s3 = new aws.S3({
-  token: process.env.TOKEN
-});
-bot.login(s3.token);
+bot.login(process.env.TOKEN);
 
 const http = require('http');
 const express = require('express');
@@ -41,4 +36,3 @@ const app = express();
 app.get("/", (request, response) => {
     response.sendStatus(200);
 });
-app.listen();
