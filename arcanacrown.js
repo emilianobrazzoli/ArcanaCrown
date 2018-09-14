@@ -34,3 +34,11 @@ let s3 = new aws.S3({
   token: process.env.TOKEN
 });
 bot.login(s3.token);
+
+const http = require('http');
+const express = require('express');
+const app = express();
+app.get("/", (request, response) => {
+    response.sendStatus(200);
+});
+app.listen();
