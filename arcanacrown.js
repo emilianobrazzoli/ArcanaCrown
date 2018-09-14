@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.static(__dirname + '/dist/'));
 app.use('/src/assets', express.static(__dirname + '/src/assets/'));
-app.listen(process.env.PORT || 8080);
+
 
 //Initialize Discord Bot
 var bot = new Discord.Client();
@@ -35,3 +35,22 @@ bot.on('message', message => {
     cmd(message);
 });
 bot.login(process.env.TOKEN);
+
+//coffeeeeee every 3 minuts
+/**/
+
+console.log(Date.now() + " Can we meet at the a coffee machine?");
+
+const http = require('http');
+app.get("/", (request, response) => {
+console.log(Date.now() + " Received a coffee: coffeeeeeeeeeee");
+response.sendStatus(200);
+});
+app.listen(process.env.PORT || 8080);
+  app.listen(process.env.PORT);
+  setInterval(() => {
+    console.log(Date.now() + " Offer a coffee: coffeeeeeeeeeee");
+    http.get(`http://caffeinabot2.glitch.me/`);
+    http.get(`http://caffeinabot.glitch.me/`);
+  }, 280000);
+  
