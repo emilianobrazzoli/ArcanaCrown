@@ -46,11 +46,11 @@ app.get("/", (request, response) => {
 console.log(Date.now() + " Received a coffee: coffeeeeeeeeeee");
 response.sendStatus(200);
 });
+
 app.listen(process.env.PORT || 8080);
-  app.listen(process.env.PORT);
-  setInterval(() => {
+
+setInterval(() => {
     console.log(Date.now() + " Offer a coffee: coffeeeeeeeeeee");
     http.get(`http://caffeinabot2.glitch.me/`);
     http.get(`http://caffeinabot.glitch.me/`);
-  }, 280000);
-  
+}, 280000);
