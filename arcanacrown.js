@@ -28,20 +28,9 @@ bot.on("ready", () => {
 bot.on('message', message => {
     cmd(message);
 });
+const aws = require('aws-sdk');
 
-bot.login(process.env.TOKEN);
-
-//coffeeeeee every 3 minuts
-/**/
-const http = require('http');
-const express = require('express');
-const app = express();
-app.get("/", (request, response) => {
-    response.sendStatus(200);
+let s3 = new aws.S3({
+  token: process.env.TOKEN
 });
-app.listen(process.env.PORT);
-setInterval(() => {
-    http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-    http.get(`http://caffeinabot.glitch.me/`);
-    http.get(`http://caffeinabot2.glitch.me/`);
-}, 280000);
+bot.login(s3.token);
