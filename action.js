@@ -103,7 +103,6 @@ module.exports = {
     top: function(playerDeck, rank) {
         var card = {};
         card.rank = rank;
-        card.type = type;
         if (playerDeck.graveyard.length > 0) {
 
             for (var i = 0; i < playerDeck.graveyard.length; i++) {
