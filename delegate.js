@@ -12,7 +12,7 @@ var clean = function() {
             if(find.hasOwnProperty(key)) {
                 var channel = find[key];
                 var difference = Date.now() - channel.insertTime;
-                if(difference>1 ){ //if(difference>10800000 ){
+                if(difference>10800000 ){
                     console.log('Clean: ' + channel.id);
                     db.delete('/channelList/'+channel.id);
                     db.save();

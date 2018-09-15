@@ -39,18 +39,18 @@ bot.login(process.env.TOKEN);
 //coffeeeeee every 3 minuts
 /**/
 
-console.log(Date.now() + " Can we meet at the a coffee machine?");
+console.log( "Can we meet at the a coffee machine?");
 
 const http = require('http');
 app.get("/", (request, response) => {
-console.log(Date.now() + " Received a coffee: coffeeeeeeeeeee");
+console.log( "Received a coffee: coffeeeeeeeeeee");
 response.sendStatus(200);
 });
 
 app.listen(process.env.PORT || 8080);
 
 setInterval(() => {
-    console.log(Date.now() + " Offer a coffee: coffeeeeeeeeeee");
+    console.log( "Offer a coffee: coffeeeeeeeeeee");
     http.get(`http://caffeinabot2.glitch.me/`);
     http.get(`http://caffeinabot.glitch.me/`);
     delegate.clean();
