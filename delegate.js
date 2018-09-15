@@ -10,11 +10,11 @@ var clean = function() {
         } 
         for(var key in find) {
             if(find.hasOwnProperty(key)) {
-                var find = object[key];
-                var difference = Date.now() - find.insertTime;
+                var channel = find[key];
+                var difference = Date.now() - channel.insertTime;
                 if(difference>1 ){ //if(difference>10800000 ){
-                    console.log('Clean: ' + find.id);
-                    db.delete('/channelList/'+find.id);
+                    console.log('Clean: ' + channel.id);
+                    db.delete('/channelList/'+channel.id);
                     db.save();
                 }
             }
