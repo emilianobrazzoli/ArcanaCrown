@@ -127,24 +127,16 @@ module.exports = {
                     break;
                 case 'cima':
                     if (args.length === 3) {
-                        var done = action.top(deck(userID, channel), args[2], 'minor');
-                        if (done) {
-                            respond.what = 'Rimescalte nel mazzo';
-                        } else {
-                            respond.what = 'Carte non presenti negli scarti';
-                        }
+                        action.top(deck(userID, channel), args[2]);
+                        respond.what = 'Rimescolate nel mazzo';
                     } else {
                         respond.what = 'Command wrong: dichiara di mettere in cima dagli scarti delle carte con un numero es /d cima k';
                     }
                     break;
                 case 'rimetti':
                     if (args.length === 3) {
-                        var done = action.place(deck(userID, channel), args[2], 'minor');
-                        if (done) {
-                            respond.what = 'Rimescalte nel mazzo';
-                        } else {
-                            respond.what = 'Carte non presenti negli scarti';
-                        }
+                        action.place(deck(userID, channel), args[2]);
+                        respond.what = 'Rimescolate nel mazzo';
                     } else {
                         respond.what = 'Command wrong: dichiara di mescolare nel mazzo dagli scarti delle carte con un numero es /d rimetti k';
                     }
@@ -246,24 +238,16 @@ module.exports = {
                     break;
                 case 'cima':
                     if (args.length === 3) {
-                        var done = action.top(common(channel), args[2], 'minor');
-                        if (done) {
-                            respond.what = 'Rimescalte nel mazzo';
-                        } else {
-                            respond.what = 'Carte non presenti negli scarti';
-                        }
+                        action.top(common(channel), args[2]);
+                        respond.what = 'Rimescolate nel mazzo';
                     } else {
                         respond.what = 'Command wrong: dichiara di mettere in cima dagli scarti delle carte con un numero es /c cima k';
                     }
                     break;
                 case 'rimetti':
                     if (args.length === 3) {
-                        var done = action.place(common(channel), args[2], 'minor');
-                        if (done) {
-                            respond.what = 'Rimescalte nel mazzo';
-                        } else {
-                            respond.what = 'Carte non presenti negli scarti';
-                        }
+                        action.place(common(channel), args[2]);
+                        respond.what = 'Rimescolate nel mazzo';
                     } else {
                         respond.what = 'Command wrong: dichiara di mescolare nel mazzo dagli scarti delle carte con un numero es /c rimetti k';
                     }
@@ -351,26 +335,19 @@ module.exports = {
                         respond.what = 'Command wrong: dichiara di accedere al mazzo delle carte pescate es /t scarti';
                     }
                     break;
+                
                 case 'cima':
                     if (args.length === 3) {
-                        var done = action.top(tarot(channel), args[2], 'major');
-                        if (done) {
-                            respond.what = 'Rimescalte nel mazzo';
-                        } else {
-                            respond.what = 'Carte non presenti negli scarti';
-                        }
+                        action.top(tarot(channel), args[2]);
+                        respond.what = 'Rimescolate nel mazzo';
                     } else {
                         respond.what = 'Command wrong: dichiara di mettere in cima dagli scarti delle carte con un numero es /t cima k';
                     }
                     break;
                 case 'rimetti':
                     if (args.length === 3) {
-                        var done = action.place(tarot(channel), args[2], 'major');
-                        if (done) {
-                            respond.what = 'Rimescalte nel mazzo';
-                        } else {
-                            respond.what = 'Carte non presenti negli scarti';
-                        }
+                        action.place(tarot(channel), args[2]);
+                        respond.what = 'Rimescolate nel mazzo';
                     } else {
                         respond.what = 'Command wrong: dichiara di mescolare nel mazzo dagli scarti delle carte con un numero es /t rimetti k';
                     }

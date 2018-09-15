@@ -100,38 +100,25 @@ module.exports = {
         }
 
     },
-    top: function(playerDeck, rank, type) {
-        var done = false;
+    top: function(playerDeck, rank) {
         var card = {};
         card.rank = rank;
         card.type = type;
         if (playerDeck.graveyard.length > 0) {
 
             for (var i = 0; i < playerDeck.graveyard.length; i++) {
-                if (card.type === 'minor') { //future implementation per suite
-                    if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
-                        var found = playerDeck.graveyard.splice(i, 1)[0];
-                        playerDeck.card.push(found);
-                        done = true;
-                    }
-                } else if (card.type === 'major') {
-                    if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
-                        var found = playerDeck.graveyard.splice(i, 1)[0];
-                        playerDeck.card.push(found);
-                        done = true;
-                    }
-                } else {
-                    //wtf man?
-                    return false;
+                if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
+                    var found = playerDeck.graveyard.splice(i, 1)[0];
+                    playerDeck.card.push(found);
                 }
             }
         } else {
             return false;
         }
-
+        console.log('fine');
     },
-    place: function(playerDeck, rank, type) {
-        var done = this.top(playerDeck, rank, type);
+    place: function(playerDeck, rank) {
+        var done = this.top(playerDeck, rank);
         this.rando(playerDeck);
         return done;
     }
