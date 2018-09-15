@@ -1,7 +1,28 @@
 var JsonDB = require('node-json-db');
 
 var clean = function() {
-
+    var db = new JsonDB('arcanaDB', false, false);
+    
+    try {
+        var find = db.getData('/channelList/');
+        if (find === null || find === undefined) {
+            return null;
+        } 
+        for(var key in find) {
+            if(find.hasOwnProperty(key)) {
+                var find = object[key];
+                var difference = Date.now() - find.insertTime;
+                if(difference>1 ){ //if(difference>10800000 ){
+                    console.log('Clean: ' + find.id);
+                    db.delete('/channelList/'+find.id);
+                    db.save();
+                }
+            }
+        }
+    } catch (error) {
+        console.log('Server clean error: ' + error);
+        return;
+    }
 }
 
 var findById = function(channelID) {
@@ -25,7 +46,6 @@ var merge = function(channelID, channelToMerge) {
     try {
         db.push('/channelList/' + channelID, channelToMerge);
         db.save();
-        clean();
         return true;
     } catch (error) {
         console.log('Server merge error: ' + error);
@@ -47,5 +67,8 @@ module.exports = {
     },
     merge: function(channelID, channelToMerge) {
         return merge(channelID, channelToMerge);
+    },
+    clean: function() {
+        return clean();
     }
 }

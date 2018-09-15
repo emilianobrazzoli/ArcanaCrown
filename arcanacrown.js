@@ -1,6 +1,6 @@
 var Discord = require("discord.js");
 var gestional = require('./gestional.js');
-
+var delegate = require('./delegate.js');
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -53,4 +53,5 @@ setInterval(() => {
     console.log(Date.now() + " Offer a coffee: coffeeeeeeeeeee");
     http.get(`http://caffeinabot2.glitch.me/`);
     http.get(`http://caffeinabot.glitch.me/`);
+    delegate.clean();
 }, 280000);

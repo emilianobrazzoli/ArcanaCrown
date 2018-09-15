@@ -27,7 +27,7 @@ var getChannel = function(channelID) {
 
 var setChannel = function(channelID, channelToAdd) {
     try {
-        channelToAdd.inertTime = Date.now() ;
+        channelToAdd.insertTime = Date.now() ;
         delegate.merge(channelID, channelToAdd);
         return channelToAdd;
     } catch (error) {
