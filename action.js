@@ -106,6 +106,7 @@ module.exports = {
         card.rank = rank;
         card.type = type;
         if (playerDeck.graveyard.length > 0) {
+            
             for (var i = 0; i < playerDeck.graveyard.length; i++) {
                 if (card.type === 'minor') { //future implementation per suite
                     if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
