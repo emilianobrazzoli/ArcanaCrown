@@ -110,14 +110,14 @@ module.exports = {
             for (var i = 0; i < playerDeck.graveyard.length; i++) {
                 if (card.type === 'minor') { //future implementation per suite
                     if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
-                        var cards = playerDeck.graveyard.splice(i, 1)[0];
-                        playerDeck.card.push(cards[0]);
+                        var found = playerDeck.graveyard.splice(i, 1)[0];
+                        playerDeck.card.push(found);
                         done = true;
                     }
                 } else if (card.type === 'major') {
                     if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
-                        var cards = playerDeck.graveyard.splice(i, 1)[0];
-                        playerDeck.card.push(cards[0]);
+                        var found = playerDeck.graveyard.splice(i, 1)[0];
+                        playerDeck.card.push(found);
                         done = true;
                     }
                 } else {
@@ -125,7 +125,6 @@ module.exports = {
                     return false;
                 }
             }
-            return done;
         } else {
             return false;
         }
