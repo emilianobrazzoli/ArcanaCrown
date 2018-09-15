@@ -101,7 +101,6 @@ module.exports = {
 
     },
     top: function(playerDeck, rank, type) {
-        var localDeck = playerDeck;
         var done = false;
         var card = {};
         card.rank = rank;
@@ -109,14 +108,14 @@ module.exports = {
         if (localDeck.graveyard.length > 0) {
             for (var i = 0; i < localDeck.graveyard.length; i++) {
                 if (card.type === 'minor') { //future implementation per suite
-                    if (card.rank.toString().toLowerCase() == localDeck.graveyard[i].rank.toString().toLowerCase()) {
+                    if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
                         var cards = playerDeck.graveyard.splice(i, 1);
                         playerDeck.card.push(cards[0]);
                         done = true;
                     }
                 } else if (card.type === 'major') {
-                    if (card.rank.toString().toLowerCase() == localDeck.graveyard[i].rank.toString().toLowerCase()) {
-                        var cards = localDeck.graveyard.splice(i, 1);
+                    if (card.rank.toString().toLowerCase() == playerDeck.graveyard[i].rank.toString().toLowerCase()) {
+                        var cards = playerDeck.graveyard.splice(i, 1);
                         playerDeck.card.push(cards[0]);
                         done = true;
                     }
